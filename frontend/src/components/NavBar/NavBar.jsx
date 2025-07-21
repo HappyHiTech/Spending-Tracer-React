@@ -19,13 +19,9 @@ export default function NavBar() {
 
     return (
         <nav className="navbar-container">
-            <div className="navbar-left">
-                <a onClick={handleNavigateHome} className="navbar-link">Home</a>
-                <a onClick={handleNavigateDashboard} className="navbar-link">Dashboard</a>
-            </div>
-            <div className="navbar-right">
-                <a onClick={handleNavigateLogin} className="navbar-link">Login</a>
-            </div>
+            <a onClick={handleNavigateHome} className="navbar-link">Home</a>
+            <a onClick={handleNavigateDashboard} className="navbar-link">Dashboard</a>
+            <a onClick={handleNavigateLogin} className="navbar-link">Login</a>
         </nav>
     );
 }

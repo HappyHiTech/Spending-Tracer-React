@@ -1,11 +1,14 @@
 import "./DashBoardPage.css"
 import NavBar from "../../components/NavBar/NavBar"
+import SideBar from "./SideBar/SideBar";
 
 export default function DashBoardPage(){
     return (
         <div className="dashboard-container">
             <NavBar />
-            <h1>Dashboard</h1>
+            <section className="dashboard-section">
+                <SideBar />
+            </section>
         </div>
     );
 }

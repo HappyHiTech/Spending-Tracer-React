@@ -6,3 +6,9 @@
     display:flex;
     flex-direction: column;
 }
+
+.dashboard-section {
+    background-color: white;
+    display: grid;
+    grid-template-columns: auto auto;
+}
