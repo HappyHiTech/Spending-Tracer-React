@@ -10,5 +10,5 @@
 .dashboard-section {
     background-color: white;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 16rem auto;
 }
