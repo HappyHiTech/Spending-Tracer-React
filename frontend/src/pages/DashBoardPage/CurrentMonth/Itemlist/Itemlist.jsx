@@ -1,6 +1,9 @@
+import { useUpload } from "../../../../hooks/UploadContext";
 import "./Itemlist.css";
 
 export default function Itemlist() {
+    const { itemList } = useUpload();
+
     // Placeholder data
     const items = [
         { date: "2024-06-01", item: "Coffee", price: "$3.50", category: "Food" },
@@ -34,7 +37,7 @@ export default function Itemlist() {
                         </tr>
                     </thead>
                     <tbody>
-                        {items.map((item, idx) => (
+                        {itemList.map((item, idx) => (
                             <tr key={idx}>
                                 <td>{item.date}</td>
                                 <td>{item.item}</td>

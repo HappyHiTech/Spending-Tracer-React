@@ -17,6 +17,7 @@ export default function Adder(){
                         <input type="date" id="date" name="date" className="adder-section-input-box"/>
                     </div>
                     <div className="adder-section-input">
+                        
                         <label htmlFor="item" className="adder-section-input-title">Item</label>
                         <input type="text" id="item" name="item" className="adder-section-input-box" placeholder="Mcdonalds"/>
                     </div>
