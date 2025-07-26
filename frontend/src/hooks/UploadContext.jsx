@@ -40,6 +40,10 @@ export function UploadProvider({ children }){
             .then((data) => {
                 setItemList(data);
             })
+            .catch((error) => {
+                console.error('Error:', error);
+                // Handle the error appropriately
+            })
         
         console.log("hello")
     }

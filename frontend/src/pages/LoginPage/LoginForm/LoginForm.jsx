@@ -75,7 +75,9 @@ export default function LoginForm() {
                 return response.json();
             })
             .then((data) => {
-                login(data.token)
+                if (!(data.error == "No user")){
+                    login(data.token, data.user)
+                }
             })
             .then(() => {
                 console.log("SJF:LKFJDF")

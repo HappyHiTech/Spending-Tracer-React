@@ -13,28 +13,32 @@ export const useAuth = () => {
 
 export function AuthProvider({children}){
     const [token, setToken] = useState(localStorage.getItem('token'));
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(localStorage.getItem('user'));
     const isLoggedIn = useRef(!!token)
 
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token')
+        const storedUser = localStorage.getItem('user')
         if (storedToken) {
-            console.log("Im logged in - useEffect")
-            setToken(storedToken)
-            isLoggedIn.current= true
+            console.log("Im logged in - useEffect");
+            setToken(storedToken);
+            setUser(storedUser);
+            isLoggedIn.current= true;
         }
-        console.log(isLoggedIn)
     }, [])
 
-    const login = (newToken) => {
+    const login = (newToken, user) => {
         localStorage.setItem('token', newToken);
+        localStorage.setItem('user', user)
         setToken(newToken);
+        setUser(user);
         isLoggedIn.current = true;
     };
 
     const logout = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('user')
         setToken(null);
         setUser(null);
         isLoggedIn.current = false;
