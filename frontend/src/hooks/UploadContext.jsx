@@ -1,13 +1,21 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import { useAuth } from './AuthContext';
 
 const UploadContext = createContext();
 export const useUpload = () => useContext(UploadContext);
 
 export function UploadProvider({ children }){
     const [itemList, setItemList] = useState([]);
+    const { token } = useAuth();
+
+    
 
     useEffect(() => {
-         fetch("http://127.0.0.1:5000/api/get_data")
+         fetch("http://127.0.0.1:5000/api/get_data", {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+         })
             .then((response) => {
                 return response.json()
             })
@@ -21,7 +29,10 @@ export function UploadProvider({ children }){
 
         fetch("http://127.0.0.1:5000/api/add_data",{
             method: "POST",
-            body: new FormData(e.target)
+            body: new FormData(e.target),
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
         })
             .then((response) => {
                 return response.json();
