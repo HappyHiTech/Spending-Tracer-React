@@ -4,6 +4,7 @@ import pprint
 from pymongo import MongoClient
 from pymongo.database import Database as MongoDatabase
 from werkzeug.datastructures import ImmutableMultiDict
+import jwt
 import bcrypt
 
 class DataBaseManager:
@@ -20,8 +21,13 @@ class DataBaseManager:
     def db(self) -> MongoDatabase:
         return self._db
     
+    def delete_all_documents(self, collection_name: str) -> None:
+        collection = self._db[collection_name]
+        collection.delete_many({})
+    
     def insert_transaction(self, user_id: str, form_data: ImmutableMultiDict) -> None:
         transaction_collection = self._db["transactions"]
+        print("HLSDFSDJH:F")
         entry_document = {
             "user_id": user_id,
             "date": form_data["date"],
@@ -32,9 +38,9 @@ class DataBaseManager:
 
         transaction_collection.insert_one(entry_document)
 
-    def get_documents(self) -> list:
+    def get_documents(self, user_id: str) -> list:
         transaction_collection = self._db["transactions"]
-        return [{**doc, "_id": str(doc["_id"])} for doc in transaction_collection.find()]
+        return [{**doc, "_id": str(doc["_id"])} for doc in transaction_collection.find({"user_id": user_id})]
     
     def insert_user(self, user_id, form_data: ImmutableMultiDict) -> None:
         users_collection = self._db["users"]
@@ -70,7 +76,8 @@ class DataBaseManager:
 
 
 
-
+# DBM = DataBaseManager()
+# DBM.delete_all_documents("transactions")
 
 
 

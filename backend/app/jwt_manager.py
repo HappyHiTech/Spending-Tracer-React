@@ -27,7 +27,6 @@ class JWTManager():
             # Get token from Authorization header
             
             auth_header = request.headers.get('Authorization')
-
             if not auth_header:
                 return jsonify({'error': "No Token provided"}), 401
                 

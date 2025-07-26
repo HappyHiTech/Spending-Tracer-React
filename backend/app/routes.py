@@ -16,10 +16,12 @@ def temp():
     return Response("OK", status=200)
 
 @main.route('/api/add_data', methods=["POST"])
+@cross_origin(origins="http://localhost:5173")
 @JWTM.verify_jwt
 def add_data():
-    DBM.insert_transaction("Harvey", request.form)
-    item_list = DBM.get_documents()
+    user_id = request.user_id
+    DBM.insert_transaction(user_id, request.form)
+    item_list = DBM.get_documents(user_id)
     return jsonify(item_list)
 
 
@@ -27,11 +29,13 @@ def add_data():
 @cross_origin(origins="http://localhost:5173")
 @JWTM.verify_jwt
 def get_data():
-    item_list = DBM.get_documents()
+    user_id = request.user_id
+    item_list = DBM.get_documents(user_id)
     return jsonify(item_list)
 
 
 @main.route('/api/signup', methods=["POST"])
+@cross_origin(origins="http://localhost:5173")
 def signup():
     DBM.insert_user(str(uuid.uuid4()), request.form)
     return Response("OK", status=200)
@@ -46,6 +50,7 @@ def login():
         return jsonify({
             "success": True,
             "token": token,
+            "user": is_there_user["username"].capitalize(),
             "message": "Login sucessful"
         })
     else:
