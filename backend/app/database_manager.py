@@ -4,8 +4,10 @@ import pprint
 from pymongo import MongoClient
 from pymongo.database import Database as MongoDatabase
 from werkzeug.datastructures import ImmutableMultiDict
+from datetime import datetime
 import jwt
 import bcrypt
+from bson import ObjectId
 
 class DataBaseManager:
     def __init__(self):
@@ -27,7 +29,6 @@ class DataBaseManager:
     
     def insert_transaction(self, user_id: str, form_data: ImmutableMultiDict) -> None:
         transaction_collection = self._db["transactions"]
-        print("HLSDFSDJH:F")
         entry_document = {
             "user_id": user_id,
             "date": form_data["date"],
@@ -38,9 +39,44 @@ class DataBaseManager:
 
         transaction_collection.insert_one(entry_document)
 
+    def delete_docuement(self, item_id: str) -> None:
+        transaction_collection = self._db["transactions"]
+        oid = ObjectId(item_id)
+        transaction_collection.delete_one({'_id': oid})
+        
+
     def get_documents(self, user_id: str) -> list:
         transaction_collection = self._db["transactions"]
-        return [{**doc, "_id": str(doc["_id"])} for doc in transaction_collection.find({"user_id": user_id})]
+        item_list = []
+
+        for doc in transaction_collection.find({"user_id": user_id}):
+            temp_item_dict = {
+                "_id": str(doc["_id"]),
+                "user_id": doc["user_id"],
+                "date": datetime.strptime(doc["date"], "%Y-%m-%d").strftime("%B %d"),
+                "item": doc["item"],
+                "price": f"${doc["price"]}",
+                "category": doc["category"]
+            }
+            item_list.append(temp_item_dict)
+        return item_list
+        # return [{**doc, "_id": str(doc["_id"])} for doc in transaction_collection.find({"user_id": user_id})]
+    
+    def get_total_spent(self, user_id) -> float:
+        transaction_collection = self._db["transactions"]
+
+        pipeline = [
+            {"$match": {"user_id": user_id}},
+            {"$group": {"_id": None, "total": {"$sum": {"$toDouble": "$price"}}}}
+        ]
+
+        result = list(transaction_collection.aggregate(pipeline))
+        if result:
+            return round(result[0]["total"], 2)
+        return 0.0
+    
+    def get_percent_per_category(self, user_id) -> list[dict]:
+        transaction_collection = self._db["transactions"].find({"user_id": user_id})
     
     def insert_user(self, user_id, form_data: ImmutableMultiDict) -> None:
         users_collection = self._db["users"]
@@ -60,24 +96,30 @@ class DataBaseManager:
         username = form_data["username"]
         password = form_data["password"]
 
+        
         users_collection = self._db["users"]
+        print("HELLo")
 
         results = users_collection.find({"username": username})
         for entry in results:
             hashed_password_str = entry.get("password")
             user_id = entry.get("user_id")
             hashed_password = hashed_password_str.encode("utf-8")
+            
             if bcrypt.checkpw(password.encode("utf-8"), hashed_password):
                 return {
                     "user_id": user_id,
                     "username": username
                 }
         return False
+    
 
+    
+        
 
 
 # DBM = DataBaseManager()
-# DBM.delete_all_documents("transactions")
+# DBM.get_total_spent("2177a0af-d1f2-484f-bd3b-4ab0dc3c0aff")
 
 
 
