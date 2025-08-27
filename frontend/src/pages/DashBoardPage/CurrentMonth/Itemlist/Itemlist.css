@@ -1,5 +1,5 @@
 .itemlist-container {
-    width: 28rem;
+    width: 30rem;
     background-color: rgba(255, 255, 255, 0.603);
     display: flex;
     flex-direction: column;
@@ -75,6 +75,41 @@
 .itemlist-table td {
     color: #333;
     word-break: break-word;
+}
+
+
+
+/* Delete button styling */
+.delete-cell {
+    width: 40px;
+    text-align: center;
+    padding: 0.7rem 0.2rem !important;
+}
+
+.delete-button {
+    background: none;
+    border: none;
+    color: #6b7280;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.itemlist-row:hover .delete-button {
+    opacity: 1;
+    /* transform: scale(1); */
+    color: #ef4444;
+}
+
+.delete-button:hover {
+    background-color: #fee2e2;
+    color: #dc2626;
+    transform: scale(1.1);
 }
 
 .itemlist-table tbody {

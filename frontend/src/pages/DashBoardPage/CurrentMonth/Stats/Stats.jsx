@@ -1,11 +1,15 @@
 import "./Stats.css";
 
+import MainStats from "./MainStats/MainStats";
+import PercentPerStats from "./PercentPerStats/PercentPerStats";
+
 export default function Stats() {
     return (
         <div className="stats-container">
-            <header className="stats-header">
-                <h1 className="stats-header-title">Stats</h1>
-            </header>
+            <MainStats />
+            <section className="detailed-stats-container">
+                <PercentPerStats />
+            </section>
         </div>
     );
 } 

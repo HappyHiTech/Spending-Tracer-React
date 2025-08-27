@@ -13,4 +13,12 @@
     font-weight: 600;
     font-size: 2rem;
     border-bottom: 1px solid black;
+    margin: 1rem 0;
+}
+
+.current-month-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
 }

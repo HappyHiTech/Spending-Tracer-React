@@ -16,11 +16,13 @@ export default function CurrentMonth(){
                 <header className="current-month-header">
                     <h1 className="current-month-title">Hello {user}</h1>
                 </header>
-                <div className="adder-itemlist-row">
+                <div className="current-month-section">
                     <Adder />
                     <Itemlist />
                 </div>
+                <h1 className="current-month-title">Stats</h1>
                 <Stats />
+                
             </div>
         </div>
     );

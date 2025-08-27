@@ -1,8 +1,12 @@
 import { useUpload } from "../../../../hooks/UploadContext";
+import { useAuth } from "../../../../hooks/AuthContext";
+
+import { useState } from "react";
 import "./Itemlist.css";
 
 export default function Itemlist() {
-    const { itemList } = useUpload();
+    const { token } = useAuth();
+    const { itemList, handleDeleteClick } = useUpload();
 
     // Placeholder data
     const items = [
@@ -16,10 +20,9 @@ export default function Itemlist() {
         { date: "2024-06-03", item: "Bus Ticket", price: "$2.25", category: "Transport" },
         { date: "2024-06-03", item: "Bus Ticket", price: "$2.25", category: "Transport" },
         { date: "2024-06-03", item: "Bus Ticket", price: "$2.25", category: "Transport" },
-        { date: "2024-06-03", item: "Bus Ticket", price: "$2.25", category: "Transport" },
-        
-
+        { date: "2024-06-03", item: "Bus Ticket", price: "$2.25", category: "Transport" }
     ];
+
 
     return (
         <div className="itemlist-container">
@@ -30,6 +33,7 @@ export default function Itemlist() {
                 <table className="itemlist-table">
                     <thead>
                         <tr>
+                            <th className="delete-cell"></th>
                             <th>Date</th>
                             <th>Item</th>
                             <th>Price</th>
@@ -38,7 +42,16 @@ export default function Itemlist() {
                     </thead>
                     <tbody>
                         {itemList.map((item, idx) => (
-                            <tr key={idx}>
+                            <tr key={idx} className="itemlist-row">
+                                <td className="delete-cell">
+                                    <button 
+                                        className="delete-button"
+                                        onClick={async () => await handleDeleteClick(idx)}
+                                        aria-label="Delete item"
+                                    >
+                                        ×
+                                    </button>
+                                </td>
                                 <td>{item.date}</td>
                                 <td>{item.item}</td>
                                 <td>{item.price}</td>
