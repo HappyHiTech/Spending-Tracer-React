@@ -16,7 +16,7 @@ export default function PercentPerStats(){
             console.log(data_returned);
             setPercentPerCategory(data_returned);
         })();
-    }, [])
+    })
 
     return (
         <div className="percent-per-container">
