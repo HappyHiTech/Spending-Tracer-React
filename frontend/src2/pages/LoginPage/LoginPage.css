@@ -1,0 +1,10 @@
+.login-container {
+    color: blue;
+    background-color: white;
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}

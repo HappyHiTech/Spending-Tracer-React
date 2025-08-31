@@ -1,0 +1,9 @@
+.stats-container {
+    box-sizing: border-box;
+    padding: 1rem;
+    /* background-color: blue; */
+}
+
+.detailed-stats-container {
+    margin-top: 2rem;
+}

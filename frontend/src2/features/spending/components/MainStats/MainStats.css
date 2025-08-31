@@ -1,0 +1,47 @@
+.main-stats-container {
+    /* background-color: red; */
+    box-sizing: border-box;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 16.3rem;
+    min-height: 10.5rem;
+    box-shadow: 0 0 4px -2px black;
+    border-radius: 10%;
+}
+
+.main-stats-header {
+    display: flex;
+    justify-content: space-between;
+    /* background:green; */
+}
+
+.main-stats-title {
+    margin: 0;
+    display: inline-block;
+    color: black;
+    /* background: pink; */
+}
+
+.main-stats-icon{
+    width: 2rem;
+    height: 2rem;
+    padding: 0.2rem;;
+    /* background-color:aqua; */
+}
+
+.main-stats-section {
+    /* background: orange; */
+    display: flex;
+}
+
+.main-stats-price {
+    margin: 0;
+    margin-top: 2rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    display: inline-block;
+    /* background: lightblue; */
+    color: black;
+}
