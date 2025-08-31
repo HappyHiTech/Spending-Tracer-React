@@ -11,13 +11,13 @@ function App() {
         <AuthProvider>
             <Router>
                 <Routes>
-                    <Route path="/" element={<HomePage />}></Route>
-                    <Route path="/dashboard" element={
+                    <Route path="/Spending-Tracer-React/" element={<HomePage />}></Route>
+                    <Route path="/Spending-Tracer-React/dashboard" element={
                         <ProtectedRoute>
                             <DashboardPage />
                         </ProtectedRoute>
                         }></Route>
-                    <Route path="/login" element={<LoginPage />}></Route>
+                    <Route path="/Spending-Tracer-React/login" element={<LoginPage />}></Route>
                 </Routes>
             </Router>
         </AuthProvider>

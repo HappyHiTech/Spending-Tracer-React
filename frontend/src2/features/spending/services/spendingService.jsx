@@ -1,5 +1,7 @@
+import { API_BASE_URL } from "@utils/constants";
+
 export const getDataService = async (token) => {
-    const response = await fetch("http://127.0.0.1:5000/api/get_data", {
+    const response = await fetch(`${API_BASE_URL}/api/get_data`, {
         headers: {
             'Authorization': `Bearer ${token}`,
         }
@@ -9,7 +11,7 @@ export const getDataService = async (token) => {
 }
 
 export const adderClickService = async (token, formTarget) => {
-    const response = await fetch("http://127.0.0.1:5000/api/add_data",{
+    const response = await fetch(`${API_BASE_URL}/api/add_data`,{
         method: "POST",
         body: new FormData(formTarget),
         headers: {
@@ -21,7 +23,7 @@ export const adderClickService = async (token, formTarget) => {
 }
 
 export const deleteClickService = async (token, item_id) => {
-    const response = await fetch("http://127.0.0.1:5000/api/remove_data", {
+    const response = await fetch(`${API_BASE_URL}/api/remove_data`, {
         method: "POST",
         body: JSON.stringify({ item_id }),
         headers: {
@@ -34,7 +36,7 @@ export const deleteClickService = async (token, item_id) => {
 }
 
 export const totalSpentService = async (token) => {
-    const response = await fetch("http://127.0.0.1:5000/api/get_total_spent", {
+    const response = await fetch(`${API_BASE_URL}/api/get_total_spent`, {
         method: "POST",
         headers: {
             'Authorization': `Bearer ${token}`
@@ -45,7 +47,7 @@ export const totalSpentService = async (token) => {
 }
 
 export const percentPerCategoryService = async (token) => {
-    const response = await fetch("http://127.0.0.1:5000/api/get_percent_per_category", {
+    const response = await fetch(`${API_BASE_URL}/api/get_percent_per_category`, {
         method: "POST",
         headers: {
             'Authorization': `Bearer ${token}`
