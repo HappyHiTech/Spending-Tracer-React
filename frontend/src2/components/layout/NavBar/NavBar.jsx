@@ -7,20 +7,20 @@ export default function NavBar() {
     const { isLoggedIn, logout } = useAuth();
 
     const handleNavigateDashboard = () => {
-        navigate("/Spending-Tracer-React/dashboard");
+        navigate("/Spending-Tracker-React/dashboard");
     };
 
     const handleNavigateHome = () => {
-        navigate("/Spending-Tracer-React");
+        navigate("/Spending-Tracker-React");
     };
 
     const handleNavigateLogin = () => { 
-        navigate("/Spending-Tracer-React/login");
+        navigate("/Spending-Tracker-React/login");
     };
 
     const handleLogout = () => {
         logout();
-        navigate("/Spending-Tracer-React/");
+        navigate("/Spending-Tracker-React/");
     };
 
     return (

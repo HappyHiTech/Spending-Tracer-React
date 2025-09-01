@@ -77,7 +77,7 @@ export default function LoginForm() {
             if (!(data.error === "No user")) {
                 login(data.token, data.user);
                 if (isLoggedIn.current){
-                    navigate("/Spending-Tracer-React/dashboard");
+                    navigate("/Spending-Tracker-React/dashboard");
                 }
             }
         }

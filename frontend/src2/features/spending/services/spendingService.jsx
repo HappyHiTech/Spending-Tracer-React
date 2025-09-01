@@ -56,3 +56,14 @@ export const percentPerCategoryService = async (token) => {
 
     return response.json();
 }
+
+export const pricePerCategoryService = async (token) => {
+    const response = await fetch(`${API_BASE_URL}/api/get_price_per_category`, {
+        method: "POST",
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+
+    return response.json();
+}

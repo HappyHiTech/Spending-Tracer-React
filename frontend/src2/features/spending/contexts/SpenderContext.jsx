@@ -5,7 +5,8 @@ import { getDataService,
     adderClickService, 
     deleteClickService, 
     totalSpentService, 
-    percentPerCategoryService } from '../services/spendingService';
+    percentPerCategoryService,
+    pricePerCategoryService } from '../services/spendingService';
 
 const SpenderContext = createContext();
 
@@ -21,6 +22,7 @@ export const useSpender = () => {
 export function SpenderProvider({ children }){
     const [itemList, setItemList] = useState([]);
     const [percentPerCategory, setPercentPerCategory] = useState({});
+    const [pricePerCategory, setPricePerCategory] = useState({});
     const [totalSpending, setTotalSpending] = useState(0);
     const { token, logout } = useAuth();
     const navigate = useNavigate();
@@ -31,6 +33,7 @@ export function SpenderProvider({ children }){
             handleGetData();
             handleTotalSpent();
             handlePercentPerCategory();
+            handlePricePerCategory();
         })();
         
         
@@ -42,7 +45,7 @@ export function SpenderProvider({ children }){
 
             if (response.status === 401){
                 logout();
-                navigate("/");
+                navigate("/Spender-Tracker-React/");
             }
             else {
                 const data = await response.json();
@@ -59,9 +62,11 @@ export function SpenderProvider({ children }){
 
         try {
             const data = await adderClickService(token, e.target);
+            
             setItemList(data.slice(0, -1));
             setTotalSpending(data.at(-1))
             handlePercentPerCategory();
+            handlePricePerCategory();
         }
         catch (err) {
             console.error(err);
@@ -76,6 +81,7 @@ export function SpenderProvider({ children }){
             setItemList(data.slice(0, -1));
             setTotalSpending(data.at(-1));
             handlePercentPerCategory();
+            handlePricePerCategory();
 
         }
         catch (err) {
@@ -105,6 +111,16 @@ export function SpenderProvider({ children }){
             console.error(err);
         }
     }
+
+    const handlePricePerCategory = async() => {
+        try {
+            const data = await pricePerCategoryService(token);
+            setPricePerCategory(data);
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
     
     const value = {
         handleGetData,
@@ -112,9 +128,11 @@ export function SpenderProvider({ children }){
         handleDeleteClick,
         handleTotalSpent,
         handlePercentPerCategory,
+        handlePricePerCategory,
         itemList,
         totalSpending,
-        percentPerCategory
+        percentPerCategory,
+        pricePerCategory,
     };
 
     return (

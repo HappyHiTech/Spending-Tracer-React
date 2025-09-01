@@ -1,23 +1,18 @@
-import "./PercentPerStats.css"
+import "./StatCardSecondary.css"
 
 
 import CategoryItem from "../CategoryItem/CategoryItem";
-import { useSpender } from "../../contexts/SpenderContext";
 
-
-export default function PercentPerStats(){
-    const { handlePercentPerCategory, percentPerCategory } = useSpender();
- 
-
+export default function StatCardSecondary({ title, symbol, dataList }){
     return (
         <div className="percent-per-container">
             <header className="percent-per-header">
-                <h2 className="percent-per-title">PercentPerStats</h2>
-                <h2 className="percent-per-title">%</h2>
+                <h2 className="percent-per-title">{title}</h2>
+                <h2 className="percent-per-title">{symbol}</h2>
             </header>
             <section className="percent-per-section">
-                {percentPerCategory &&
-                    Object.entries(percentPerCategory).map(([category, percent]) => (
+                {dataList &&
+                    Object.entries(dataList).map(([category, percent]) => (
                     <CategoryItem 
                         key={category} 
                         category={category} 
