@@ -27,7 +27,7 @@ export default function Adder(){
                     </div>
                     <div className="adder-section-input">
                         <label htmlFor="category" className="adder-section-input-title">Category</label>
-                        <input type="text" id="category" name="category" className="adder-section-input-box" placeholder="Myself"/>
+                        <input type="text" id="category" name="category" className="adder-section-input-box" placeholder="Food"/>
                     </div>
                     <button className="adder-form-button">Add to List!</button>
                 </form>

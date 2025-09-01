@@ -1,0 +1,52 @@
+.budget-viewer-container {
+    width: 20rem;
+    background-color: rgba(255, 255, 255, 0.603);
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    padding: .1rem 1.5rem;
+    box-shadow: 0 0 4px -2px black;
+    min-width: 24rem;
+    max-width: 100%;
+}
+
+.budget-viewer-header{
+    display: inline-block;
+}
+
+.budget-viewer-header-title{
+    color: black;
+    text-align: left;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    border-bottom: 1px solid black;
+}
+
+.budget-viewer-section {
+    margin-bottom: 1rem;
+}
+
+.budget-viewer-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e5e7eb;
+    font-family: "Poppins", sans-serif;
+    margin-bottom: 1rem;
+}
+
+.budget-viewer-item:last-child {
+    border-bottom: none;
+}
+
+.budget-viewer-item-category {
+    color: #333;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.budget-viewer-item-percentage {
+    color: #3b82f6;
+    font-weight: 600;
+    font-size: 1rem;
+}

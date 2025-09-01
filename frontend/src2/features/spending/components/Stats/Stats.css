@@ -6,4 +6,9 @@
 
 .detailed-stats-container {
     margin-top: 2rem;
+    display: flex;
+}
+
+.detailed-stats-container > :first-child {
+    margin-right: 20px;
 }

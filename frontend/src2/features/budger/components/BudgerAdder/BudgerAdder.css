@@ -1,15 +1,5 @@
-.adder-itemlist-row {
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 100%;
-    margin-top: 2rem;
-}
-
-.adder-container {
-    width: 36rem;
+.budget-adder-container {
+    width: 20rem;
     background-color: rgba(255, 255, 255, 0.603);
     display: flex;
     flex-direction: column;
@@ -20,11 +10,12 @@
     max-width: 100%;
 }
 
-.adder-header{
+.budget-adder-header{
     display: inline-block;
 }
 
-.adder-header-title{
+.budget-adder-title{
+    margin-bottom: 1.5rem;
     color: black;
     text-align: left;
     font-family: "Poppins", sans-serif;
@@ -33,33 +24,23 @@
     border-bottom: 1px solid black;
 }
 
-#add_form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 1rem;
-}
-
-#date {
-    color-scheme: light;
-}
-
-.adder-section-input{
+.budget-adder-form {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
 }
 
-.adder-section-input-title{
+.budget-adder-input-title{
     margin: 0;
     color: #333;
     font-family: "poppins";
     font-weight: 500;
     font-size: 1rem;
     text-align: left;
+    margin-right: 1rem;
 }
 
-.adder-section-input-box {
+.budget-adder-input-box {
     background-color: white;
     padding: 0.4rem;
     font-family: "poppins";
@@ -70,16 +51,21 @@
     border-radius: 0.2rem;
 }
 
-.adder-form-button {
-    grid-column: 2;
+.budget-adder-input-container {
+    margin-bottom: 1rem;
+
+}
+
+.budget-adder-form-button {
     border: none;
     color: #fff;
     background-image: linear-gradient(30deg, #423e3e, #201e1e);
     border-radius: 20px;
     background-size: 100% auto;
     font-family: "Poppins";
-    padding: 0.6em 1.5em;
+    padding: 0.6em 0.5em;
     box-shadow: 0px 0px 6px -2px black;
     margin-bottom: 1.5rem;
+    width: 50%
 }
 
