@@ -17,7 +17,8 @@ stats_bp = Blueprint("stats", __name__)
 @JWTM.verify_jwt
 def get_total_spent():
     user_id = request.user_id
-    total_spent = DBM.get_total_spent(user_id)
+    # total_spent = DBM.get_total_spent(user_id)
+    total_spent = SM.total_price(user_id)
     return jsonify({"total_spent": total_spent})
 
 @stats_bp.route("/api/get_percent_per_category", methods=["POST"])
@@ -26,4 +27,13 @@ def get_total_spent():
 def get_percent_per_category():
     user_id = request.user_id
     category_dict = SM.get_percent_per_category(user_id)
+    return jsonify(category_dict)
+
+
+@stats_bp.route("/api/get_price_per_category", methods=["POST"])
+@cross_origin(origins=["http://localhost:5173", "http://127.0.0.1:5173", "https://happyhitech.github.io"])
+@JWTM.verify_jwt
+def get_price_per_category():
+    user_id = request.user_id
+    category_dict = SM.get_price_per_category(user_id)
     return jsonify(category_dict)

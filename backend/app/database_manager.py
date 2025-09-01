@@ -62,22 +62,6 @@ class DataBaseManager:
         return item_list
         # return [{**doc, "_id": str(doc["_id"])} for doc in transaction_collection.find({"user_id": user_id})]
     
-    def get_total_spent(self, user_id) -> float:
-        transaction_collection = self._db["transactions"]
-
-        pipeline = [
-            {"$match": {"user_id": user_id}},
-            {"$group": {"_id": None, "total": {"$sum": {"$toDouble": "$price"}}}}
-        ]
-
-        result = list(transaction_collection.aggregate(pipeline))
-        if result:
-            return round(result[0]["total"], 2)
-        return 0.0
-    
-    def get_percent_per_category(self, user_id) -> list[dict]:
-        transaction_collection = self._db["transactions"].find({"user_id": user_id})
-    
     def insert_user(self, user_id, form_data: ImmutableMultiDict) -> None:
         users_collection = self._db["users"]
 

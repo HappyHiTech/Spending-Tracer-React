@@ -29,6 +29,22 @@ class StatsManager():
             for category, amount in category_dict.items()
         }
     
+    def get_price_per_category(self, user_id: str) -> dict:
+        category_dict = {}
+        
+        transaction_collection = self._db["transactions"].find({"user_id": user_id})
+
+        for entry in transaction_collection:
+            category = entry["category"]
+            price = float(entry["price"])
+            category_dict[category] = category_dict.get(category, 0) + price
+
+        return {
+            category: f"${amount:.2f}"
+            for category, amount in category_dict.items()
+        }
+
+    
 
 # SM = StatsManager(DBM.db())
 # USER_ID= "2177a0af-d1f2-484f-bd3b-4ab0dc3c0aff"

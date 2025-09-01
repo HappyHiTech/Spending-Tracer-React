@@ -2,10 +2,12 @@ from flask import Flask, request, Response, Blueprint, jsonify
 from flask_cors import cross_origin
 from app.database_manager import DataBaseManager
 from app.jwt_manager import JWTManager
+from app.stats_manager import StatsManager
 import uuid
 
 DBM = DataBaseManager()
 JWTM = JWTManager()
+SM = StatsManager(DBM.db())
 
 item_bp = Blueprint("item", __name__)
 
@@ -31,7 +33,7 @@ def add_data():
     user_id = request.user_id
     DBM.insert_transaction(user_id, request.form)
     item_list = DBM.get_documents(user_id)
-    total_spent = DBM.get_total_spent(user_id)
+    total_spent = SM.total_price(user_id)
     item_list.append(total_spent)
     return jsonify(item_list)
 
@@ -45,6 +47,6 @@ def remove_data():
     item_id = data.get("item_id")
     DBM.delete_docuement(item_id)   
     item_list = DBM.get_documents(user_id)
-    total_spent = DBM.get_total_spent(user_id)
+    total_spent = SM.total_price(user_id)
     item_list.append(total_spent)
     return jsonify(item_list)
