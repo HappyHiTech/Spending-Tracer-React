@@ -25,7 +25,7 @@ class StatsManager():
             category_dict[category] = category_dict.get(category, 0) + price
 
         return {
-            category: f"%{(amount / total_spending) * 100:.2f}"
+            category: f"{(amount / total_spending) * 100:.2f}%"
             for category, amount in category_dict.items()
         }
     

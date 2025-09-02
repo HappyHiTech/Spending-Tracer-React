@@ -97,7 +97,48 @@ class DataBaseManager:
                 }
         return False
     
+    def insert_budget(self, user_id: str, form_data: ImmutableMultiDict) -> None:
+        budget_collection = self._db["budget"]
 
+        category = form_data["category"]
+        percent = form_data["percent"]
+
+    
+        entry_document = {
+            "user_id": user_id,
+            "category": form_data["category"],
+            "percent": form_data["percent"],
+        }
+
+        budget_collection.replace_one(
+            {
+                "user_id": user_id,
+                "category": category
+            },
+            entry_document,
+            upsert=True
+        )
+    
+    def delete_budget(self, user_id: str, category) -> None:
+        budget_collection = self._db["budget"]
+        budget_collection.delete_one({'category': category})
+    
+
+    def get_budget(self, user_id: str) -> list:
+        budget_collection = self._db["budget"].find({"user_id": user_id})
+        budget_list = []
+
+        for doc in budget_collection:
+            temp_budget_dict = {
+                "_id": str(doc["_id"]),
+                'user_id': doc["user_id"],
+                "category": doc["category"],
+                "percent": doc["percent"]
+            }
+
+            budget_list.append(temp_budget_dict)
+        
+        return budget_list
     
         
 
