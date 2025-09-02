@@ -13,6 +13,9 @@ export default function LoginForm() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [usernameError, setUsernameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
+    const [loginError, setLoginError] = useState("");
+    const [signUpError, setSignUpError] = useState("");
+    const [signUpComplete, setSignUpComplete] = useState("");
 
     const navigate = useNavigate();
 
@@ -59,6 +62,13 @@ export default function LoginForm() {
 
         try {
             const data = await signUpUserService(user, pass)
+            if (data["success"]){
+                setSignUpError("")
+                setSignUpComplete("SignUp was Completed successfully, return back to login")
+            }
+            else {
+                setSignUpError("Username already exist")
+            }
         }
         catch(err) {
             console.error(err);
@@ -75,10 +85,15 @@ export default function LoginForm() {
         try {
             const data = await loginUserService(user, pass)
             if (!(data.error === "No user")) {
+                setLoginError("")
                 login(data.token, data.user);
                 if (isLoggedIn.current){
                     navigate("/Spending-Tracker-React/dashboard");
                 }
+            }
+            else {
+                console.log("There isn't a user")
+                setLoginError("Incorrect username or password.")
             }
         }
         catch (err) {
@@ -141,6 +156,9 @@ export default function LoginForm() {
                                 {showPassword ? "👁️" : "👁️‍🗨️"}
                             </button>
                         </div>
+                        <div className="error-messages">
+                            {loginError && <div className="username-error">{loginError}</div>}
+                        </div>
                     </div>
                     {isSignup && (
                         <div className="login-form-input">
@@ -166,6 +184,8 @@ export default function LoginForm() {
                             <div className="error-messages">
                                 {usernameError && <div className="username-error">{usernameError}</div>}
                                 {passwordError && <div className="password-error">{passwordError}</div>}
+                                {signUpComplete && <div className="signup-success">{signUpComplete}</div>}
+                                {signUpError && <div className="password-error">{signUpError}</div>}
                             </div>
                         </div>
                     )}
