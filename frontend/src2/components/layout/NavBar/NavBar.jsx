@@ -1,10 +1,13 @@
 import "./NavBar.css"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@contexts/AuthContext.jsx";
+import { useDashBoard } from "@contexts/DashBoardContext";
 
 export default function NavBar() {
     const navigate = useNavigate();
+    const location = useLocation();
     const { isLoggedIn, logout } = useAuth();
+    const { toggleSideBar } = useDashBoard();
 
     const handleNavigateDashboard = () => {
         navigate("/Spending-Tracker-React/dashboard");
@@ -25,11 +28,15 @@ export default function NavBar() {
 
     return (
         <nav className="navbar-container">
-            <div className="navbar-left">
+            {location.pathname == "/Spending-Tracker-React/dashboard" && (
+                <div className="navbar-container-menu-icon">
+                    <span className="menu-icon" onClick={toggleSideBar}>☰</span>
+                </div>
+            )}
+            
+            <div className="navbar-container-content">
                 <a onClick={handleNavigateHome} className="navbar-link">Home</a>
                 <a onClick={handleNavigateDashboard} className="navbar-link">Dashboard</a>
-            </div>
-            <div className="navbar-right">
                 {isLoggedIn.current ? (
                     <a onClick={handleLogout} className="navbar-link">Logout</a>
                 ) : (

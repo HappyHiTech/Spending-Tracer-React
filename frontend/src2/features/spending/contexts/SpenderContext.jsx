@@ -8,6 +8,8 @@ import { getDataService,
     percentPerCategoryService,
     pricePerCategoryService } from '../services/spendingService';
 
+import { formValidation } from '../utils/spendingUtils';
+
 const SpenderContext = createContext();
 
 export const useSpender = () => {
@@ -24,6 +26,7 @@ export function SpenderProvider({ children }){
     const [percentPerCategory, setPercentPerCategory] = useState({});
     const [pricePerCategory, setPricePerCategory] = useState({});
     const [totalSpending, setTotalSpending] = useState(0);
+    const [adderNotes, setAdderNotes] = useState("");
     const { token, logout } = useAuth();
     const navigate = useNavigate();
 
@@ -59,17 +62,22 @@ export function SpenderProvider({ children }){
 
     const handleAdderClick = async (e) => {
         e.preventDefault();
-
-        try {
-            const data = await adderClickService(token, e.target);
-            
-            setItemList(data.slice(0, -1));
-            setTotalSpending(data.at(-1))
-            handlePercentPerCategory();
-            handlePricePerCategory();
-        }
-        catch (err) {
-            console.error(err);
+        
+        const entryFormData = new FormData(e.target);
+        const formValidMessage = formValidation(entryFormData);
+        setAdderNotes(formValidMessage)
+        if (formValidMessage == "Adding successful"){
+            try {
+                const data = await adderClickService(token, e.target);
+                
+                setItemList(data.slice(0, -1));
+                setTotalSpending(data.at(-1))
+                handlePercentPerCategory();
+                handlePricePerCategory();
+            }
+            catch (err) {
+                console.error(err);
+            }
         }
     }
 
@@ -133,6 +141,7 @@ export function SpenderProvider({ children }){
         totalSpending,
         percentPerCategory,
         pricePerCategory,
+        adderNotes,
     };
 
     return (

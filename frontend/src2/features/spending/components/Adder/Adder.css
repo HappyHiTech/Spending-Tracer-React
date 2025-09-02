@@ -70,6 +70,20 @@
     border-radius: 0.2rem;
 }
 
+.adder-section-notes-sucess {
+    color: #22c55e;
+    font-family: "poppins";
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.adder-section-notes-error {
+    color: #dc2626;
+    font-family: "poppins";
+    font-size: 1rem;
+    font-weight: 500;
+}
+
 .adder-form-button {
     grid-column: 2;
     border: none;

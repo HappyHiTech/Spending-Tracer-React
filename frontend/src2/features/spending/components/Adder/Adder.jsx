@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { useSpender } from "@features/spending"; 
 
 export default function Adder(){
-    const {handleAdderClick} = useSpender();
+    const {handleAdderClick, adderNotes} = useSpender();
+    
     
     return (
         <div className="adder-container">
@@ -28,6 +29,11 @@ export default function Adder(){
                     <div className="adder-section-input">
                         <label htmlFor="category" className="adder-section-input-title">Category</label>
                         <input type="text" id="category" name="category" className="adder-section-input-box" placeholder="Food"/>
+                    </div>
+                    <div className={`adder-section-notes-${adderNotes === "Adding successful!" ? "sucess" : "error"}`}>
+                        {adderNotes && (
+                            adderNotes
+                        )}
                     </div>
                     <button className="adder-form-button">Add to List!</button>
                 </form>

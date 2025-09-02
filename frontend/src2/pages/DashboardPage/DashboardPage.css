@@ -7,8 +7,74 @@
     flex-direction: column;
 }
 
+.navbar-container-dashboard {
+    background: white;
+    z-index: 1000;
+}
+
 .dashboard-section {
     background-color: white;
-    display: grid;
-    grid-template-columns: 16rem auto;
+    display: flex;
 }
+
+.dashboard-section-visible {
+    background-color: white;
+    display: flex;
+    overflow: hidden;
+}
+
+.dashboard-section-content-visible {
+    pointer-events: none;
+}
+
+
+.dashboard-section-sidebar {
+    display: none;
+}
+
+.dashboard-section-sidebar-visible {
+    position: fixed;
+    z-index: 1000;
+    z-index: 1000;
+    height: 100vh;
+}
+
+.sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+
+
+/* Desktop styles */
+@media (min-width: 768px) {
+    .dashboard-section-sidebar-visible {
+        position: static;
+        width: auto;
+        height: auto;
+        box-shadow: none;
+    }
+
+    .dashboard-section-content-visible {
+        pointer-events: auto;
+    }
+
+    .dashboard-section-visible {
+        background-color: white;
+        display: flex;
+        overflow: visible;
+    }
+
+    .sidebar-backdrop {
+        display: none;
+    }
+    
+
+    
+}
+

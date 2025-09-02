@@ -5,22 +5,25 @@ import LoginPage from "@pages/LoginPage/LoginPage"
 import ProtectedRoute from "@utils/ProtectedRoute"
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { AuthProvider } from "@contexts/AuthContext"
+import { DashBoardProvider } from "@contexts/DashBoardContext"
 
 function App() {
     return (
-        <AuthProvider>
-            <Router>
-                <Routes>
-                    <Route path="/Spending-Tracker-React/" element={<HomePage />}></Route>
-                    <Route path="/Spending-Tracker-React/dashboard" element={
-                        <ProtectedRoute>
-                            <DashboardPage />
-                        </ProtectedRoute>
-                        }></Route>
-                    <Route path="/Spending-Tracker-React/login" element={<LoginPage />}></Route>
-                </Routes>
-            </Router>
-        </AuthProvider>
+        <DashBoardProvider>
+            <AuthProvider>
+                <Router>
+                    <Routes>
+                        <Route path="/Spending-Tracker-React/" element={<HomePage />}></Route>
+                        <Route path="/Spending-Tracker-React/dashboard" element={
+                            <ProtectedRoute>
+                                <DashboardPage />
+                            </ProtectedRoute>
+                            }></Route>
+                        <Route path="/Spending-Tracker-React/login" element={<LoginPage />}></Route>
+                    </Routes>
+                </Router>
+            </AuthProvider>
+        </DashBoardProvider>
     )
 }
 
