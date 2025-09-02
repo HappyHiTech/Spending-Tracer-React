@@ -12,3 +12,14 @@
 .detailed-stats-container > :first-child {
     margin-right: 20px;
 }
+
+@media (max-width: 768px) {
+    .detailed-stats-container {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+    }
+    .detailed-stats-container > :first-child {
+        margin-bottom: 1.5rem;
+    }
+}

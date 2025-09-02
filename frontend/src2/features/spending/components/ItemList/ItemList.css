@@ -124,3 +124,37 @@
     width: 100%;
     table-layout: fixed;
 }
+
+@media (max-width: 768px) {
+    .itemlist-container {
+        width: 84.1vw;
+        background-color: rgba(255, 255, 255, 0.603);
+        display: flex;
+        flex-direction: column;
+        border-radius: 1rem;
+        padding: .1rem 1.5rem 1.5rem 1.5rem;
+        box-shadow: 0 0 4px -2px black;
+        margin-top: 0;
+        min-width: 18rem;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .itemlist-table th {
+        background: #f3f4f6;
+        font-size: .9rem;
+        font-weight: 600;
+        border-bottom: 2px solid #e5e7eb;
+        color: #222;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .itemlist-table td {
+        font-size: .70rem;
+        color: #333;
+        word-break: break-word;
+    }
+
+}

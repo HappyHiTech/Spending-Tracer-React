@@ -97,3 +97,24 @@
     margin-bottom: 1.5rem;
 }
 
+
+@media (max-width: 768px) {
+    #add_form {
+        grid-template-columns: 1fr; /* Change from 2 columns to 1 */
+        grid-template-rows: auto;   /* Let rows adjust automatically */
+    }
+    
+    .adder-form-button {
+        grid-column: 1; /* Button spans full width on mobile */
+    }
+    
+    .adder-container {
+        width: 88vw; /* Make container more mobile-friendly */
+        min-width: auto; /* Remove min-width constraint on mobile */
+        padding: 0.1rem 1rem; /* Reduce padding on mobile */
+    }
+    
+    .adder-header-title {
+        font-size: 1.5rem; /* Smaller title on mobile */
+    }
+}
