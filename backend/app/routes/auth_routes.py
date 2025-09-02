@@ -15,8 +15,18 @@ auth_bp = Blueprint("auth", __name__)
 @auth_bp.route('/api/signup', methods=["POST"])
 @cross_origin(origins=["http://localhost:5173", "http://127.0.0.1:5173", "https://happyhitech.github.io"])
 def signup():
-    DBM.insert_user(str(uuid.uuid4()), request.form)
-    return Response("OK", status=200)
+    isSignUpGood = DBM.insert_user(str(uuid.uuid4()), request.form)
+    if (isSignUpGood):
+        return jsonify({
+            'success': True,
+            'message': "Sign Up sucessful"
+        })
+    else:
+        return jsonify({
+            "sucess": False,
+            "error": "username already exists"
+        })
+
 
 @auth_bp.route('/api/login', methods=["POST", "OPTIONS"])
 @cross_origin(origins=["http://localhost:5173", "http://127.0.0.1:5173", "https://happyhitech.github.io"])

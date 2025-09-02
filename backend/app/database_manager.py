@@ -62,8 +62,13 @@ class DataBaseManager:
         return item_list
         # return [{**doc, "_id": str(doc["_id"])} for doc in transaction_collection.find({"user_id": user_id})]
     
-    def insert_user(self, user_id, form_data: ImmutableMultiDict) -> None:
+    def insert_user(self, user_id, form_data: ImmutableMultiDict) -> bool:
         users_collection = self._db["users"]
+
+        username = form_data["username"]
+
+        if users_collection.find_one({"username": username}):
+            return False
 
         hashed = bcrypt.hashpw(form_data["password"].encode('utf-8'), bcrypt.gensalt())
 
@@ -74,6 +79,7 @@ class DataBaseManager:
         }
 
         users_collection.insert_one(entry_document)
+        return True
 
     def search_user(self, form_data: ImmutableMultiDict) -> dict | bool:
         return_dict = {}
