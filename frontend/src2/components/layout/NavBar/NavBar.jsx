@@ -20,7 +20,7 @@ export default function NavBar() {
 
     const handleLogout = () => {
         logout();
-        navigate("/Spending-Tracker-React/");
+        navigate("/Spending-Tracker-React");
     };
 
     return (

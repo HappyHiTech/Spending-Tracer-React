@@ -15,6 +15,7 @@
 }
 
 .budget-viewer-header-title{
+    margin-bottom: 1rem;
     color: black;
     text-align: left;
     font-family: "Poppins", sans-serif;
@@ -30,9 +31,12 @@
 .budget-viewer-item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid #e5e7eb;
     font-family: "Poppins", sans-serif;
     margin-bottom: 1rem;
+    padding: 0.5rem 0;
+    position: relative;
 }
 
 .budget-viewer-item:last-child {
@@ -43,10 +47,40 @@
     color: #333;
     font-weight: 500;
     font-size: 1rem;
+    flex: 1;
 }
 
 .budget-viewer-item-percentage {
     color: #3b82f6;
     font-weight: 600;
     font-size: 1rem;
+    margin-right: 1rem;
+}
+
+.budget-viewer-delete-btn {
+    background-color: #fee2e2;
+    color: #dc2626;
+    border: none;
+    border-radius: 20px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+    opacity: 0.7;
+}
+
+.budget-viewer-delete-btn:hover {
+    background-color: #fecaca;
+    color: #b91c1c;
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.budget-viewer-delete-btn:active {
+    transform: scale(0.95);
 }
