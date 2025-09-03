@@ -7,3 +7,31 @@
     flex-direction: column;
     color:red
 }
+
+.homepage-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 80vh;
+    padding: 2rem;
+}
+
+.homepage-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    font-family: "Poppins", sans-serif;
+}
+
+.homepage-subtitle {
+    font-size: 1.25rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    line-height: 1.6;
+    font-family: "Poppins", sans-serif;
+}
+
