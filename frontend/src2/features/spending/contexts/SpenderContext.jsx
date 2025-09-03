@@ -66,7 +66,7 @@ export function SpenderProvider({ children }){
         const entryFormData = new FormData(e.target);
         const formValidMessage = formValidation(entryFormData);
         setAdderNotes(formValidMessage)
-        if (formValidMessage == "Adding successful"){
+        if (formValidMessage == "Adding successful!"){
             try {
                 const data = await adderClickService(token, e.target);
                 
